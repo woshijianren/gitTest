@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:beans="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/security
+        https://www.springframework.org/schema/security/spring-security.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--
+    http元素节点配置
+    1.针对某些url设定其访问的权限
+        1.1 isAnonymous是匿名访问,意思是不需要登录即可访问
+        1.2 isAuthenticated表示必须登录之后才可以访问
+
+    2. form-login:表明是采用表单登录验证方式
+
+    小结Http配置的作用:
+    表明用什么方式验证什么东西
+-->
+    <security:http  >
+        <security:intercept-url pattern="/" access="isAnonymous()"/>
+        <security:intercept-url pattern="/home" access="hasRole('ROLE_USER')"/>
+        <security:intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
+        <security:form-login/>
+       <!-- <security:http-basic/>-->
+    </security:http>
+<!--
+验证跟谁比较,谁负责验证就是靠authentication manager (验证管理器)
+$2a$10$fo/Gp8wikyAo1LQm2QOfvucfgTBuoOXps./0Hxo0/KVavxM59uPVO
+验证提供者:提供验证功能
+
+userService:真正去进行信息的读取
+
+
+
+-->
+    <security:authentication-manager>
+
+        <security:authentication-provider>
+
+            <security:user-service  >
+                <security:user  name="user" password="$2a$10$fo/Gp8wikyAo1LQm2QOfvucfgTBuoOXps./0Hxo0/KVavxM59uPVO" authorities="ROLE_USER"/>
+                <security:user  name="admin" password="{noop}123" authorities="ROLE_ADMIN"/>
+            </security:user-service>
+            <security:password-encoder ref="passwordEncoder"/>
+        </security:authentication-provider>
+
+    </security:authentication-manager>
+
+
+    <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+</beans>
