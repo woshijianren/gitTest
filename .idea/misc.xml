@@ -3,6 +3,7 @@
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/ch01-web-xml-helloworld" />
+    <file type="web" url="file://$PROJECT_DIR$/ch02-mvc-code-helloworld" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">

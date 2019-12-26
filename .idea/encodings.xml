@@ -3,5 +3,7 @@
   <component name="Encoding" native2AsciiForPropertiesFiles="true">
     <file url="file://$PROJECT_DIR$/ch01-web-xml-helloworld/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ch01-web-xml-helloworld/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ch02-mvc-code-helloworld/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ch02-mvc-code-helloworld/src/main/resources" charset="UTF-8" />
   </component>
 </project>
