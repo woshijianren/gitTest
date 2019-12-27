@@ -1,6 +1,8 @@
 package config;
 
+import config.security.SecurityConfigHello;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 /**
  * @author cj
@@ -9,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 //@ComponentScan({"com.service"})
+@Import(SecurityConfigHello.class)
 public class AppConfig {
 
 

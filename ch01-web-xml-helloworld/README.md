@@ -65,7 +65,10 @@ isAuthenticated表示验证之后才可以访问
 </security:authentication-manager>
 ```
 
-这里还没有用到角色的东西,所以authorities是可以随便设置的.密码前的前缀{noop}表示不对密码进行加密操作
+这里还没有用到角色的东西,所以authorities是可以随便设置的.密码前的前缀{noop}表示不对密码进行加密操作,
+相当于使用了`NoOpPasswordEncoder`类进行密码加密处理
+
+> 在老的spring security版本中,默认是不需要对密码进行加密处理的,新版默认是对密码进行了加密处理.
 
 # 加密处理
 BCryptPasswordEncoder这个加密方式有2个显著的特点
@@ -74,16 +77,17 @@ BCryptPasswordEncoder这个加密方式有2个显著的特点
 
 # 作业(理解用)
 1. 删掉监听器配置会出什么错误?
-2. DelegatingFilterProxy的过滤器名字不设置为springSecurityFilterChain会出现什么情况
+2. DelegatingFilterProxy的过滤器名字不设置为springSecurityFilterChain会出现什么情况?
 3. spring元数据文件,如何去掉security前缀?
 4. 如何获取BCryptPasswordEncoder的加密结果?
 5. 思考http的auto-config有什么作用?
 6. use-expressions的作用是什么?
-7. 登录页是如何产生的?如何研究
+7. 登录页是如何产生的?如何研究?
 8. 为什么不需要反复验证
 9. 如何理解配置的user的authorities的值的作用?
 10. AuthenticationManager的作用?
 11. authenticationProvider的作用
 12. user-service作用?
 13. http协议的400,404,401,403分别是什么含义?
+14. 理解角色的作用
 
