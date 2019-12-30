@@ -1,5 +1,7 @@
 package config.security;
 
+
+import com.security.MyLogoutSuccessHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -9,54 +11,48 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-
 /**
  * @author cj
- * @date 2019/12/27
+ * @date 2019/12/30
  */
 @Configuration
 @EnableWebSecurity
-public class SecurityConfigHello extends WebSecurityConfigurerAdapter {
+public class SpringLogoutConfig extends WebSecurityConfigurerAdapter {
 
-    /**
-     * 类似于xml中的AuthenticationManager的配置
-     *
-     * @param auth
-     * @throws Exception
-     */
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        //@formatter:off
         auth.inMemoryAuthentication()
                 .withUser("user")
-                    .password(passwordEncoder().encode("123"))
-                    .authorities("ROLE_USER")
-            .and()
+                .password(passwordEncoder().encode("123"))
+                .authorities("asdf")
+                .and()
                 .withUser("admin")
-                    .password(passwordEncoder().encode("123"))
-                    .authorities("ROLE_ADMIN");
-        //@formatter:on
+                .password(passwordEncoder().encode("123"))
+                .authorities("zxcv");
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    /**
-     * 这块的配置类似于xml中的http块的配置
-     *
-     * @param http
-     * @throws Exception
-     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // @formatter:off
-        http.formLogin()
-            .and()
-            .authorizeRequests()
-                .antMatchers("/admin").authenticated()
-                .antMatchers("/").anonymous();
+        http
+                .formLogin()
+                .and()
+                .logout()
+                    .deleteCookies("JSESSIONID")
+                    .invalidateHttpSession(true)
+                    //.addLogoutHandler() // 真正做登出操作,比如删除会话,cookie等操作
+                    .logoutSuccessHandler(new MyLogoutSuccessHandler()) // 这个是登出成功之后的后续处理
+                .and()
+                .authorizeRequests()
+                    .antMatchers("/").permitAll()
+                    .antMatchers("/admin").authenticated();
         // @formatter:on
     }
+
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return  new BCryptPasswordEncoder();
+    }
+
 }

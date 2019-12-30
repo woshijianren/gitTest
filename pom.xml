@@ -11,6 +11,7 @@
     <modules>
         <module>ch01-web-xml-helloworld</module>
         <module>ch02-mvc-code-helloworld</module>
+        <module>ch03-mvc-code-login-logout-userdetailservice</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
