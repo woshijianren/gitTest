@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ import java.util.List;
 
 @Service
 public class MyUserDetailServiceImpl implements UserDetailsService {
-    @Autowired
+    @Autowired(required = false)
     private PasswordEncoder passwordEncoder;
 
     @Autowired
@@ -34,6 +35,9 @@ public class MyUserDetailServiceImpl implements UserDetailsService {
         return new User("user", passwordEncoder.encode("123"), authorities);*/
 
         UserInfoEntity entity = userInfoDao.getUserInfoByUsername(username);
+        if(StringUtils.isEmpty(entity)){
+            throw new UsernameNotFoundException("不是合法用户名");
+        }
         List<GrantedAuthority> authorities =
                 AuthorityUtils.createAuthorityList("xxx", "yyy");
         return new User(entity.getUsername(),

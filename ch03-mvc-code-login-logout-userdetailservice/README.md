@@ -33,12 +33,15 @@
 # UserDetailService(自定义提取用户数据)
 实现这个接口,然后利用auth.userDetailService(传进来)即可使用
 
+编写自定义的UserDetailService时,如果需要抛异常就抛AuthenticationException子类
+比如UsernameNotFoundException
+# csrf
+
 
 # 作业1:
 普通的一个mvc项目,完成自定义登录与登出
 1.要求输入用户名的控件的名字是uname,其它保留默认
 2.登录成功之后,往session中放入一个登录成功的时间
-
 3.登出之后不能读取到放到会话中的登录时间
 4.真正读取数据库
 

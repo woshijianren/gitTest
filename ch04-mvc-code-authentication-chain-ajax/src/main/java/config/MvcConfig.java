@@ -32,5 +32,4 @@ public class MvcConfig implements WebMvcConfigurer {
         registration.addResourceLocations("classpath:/static/");
     }
 
-
 }

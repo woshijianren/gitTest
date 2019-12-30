@@ -1,6 +1,6 @@
 package config;
 
-import config.security.SpringUserDetailServiceConfig;
+import config.security.SpringLoginConfig;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -11,11 +11,10 @@ import org.springframework.context.annotation.Import;
  */
 
 @Configuration
-@ComponentScan({"com.service"})
-//@Import(SpringLoginConfig.class)
+@ComponentScan({"com.service","com.dao"})
+@Import(SpringLoginConfig.class)
 //@Import(SpringLogoutConfig.class)
-@Import(SpringUserDetailServiceConfig.class)
+//@Import(SpringUserDetailServiceConfig.class)
 public class AppConfig {
-
 
 }

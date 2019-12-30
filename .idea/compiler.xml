@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ch02-mvc-code-helloworld" />
+        <module name="ch04-mvc-code-authentication-chain-ajax" />
         <module name="ch03-mvc-code-login-logout-userdetailservice" />
         <module name="ch01-web-xml-helloworld" />
       </profile>

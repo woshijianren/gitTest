@@ -34,11 +34,13 @@ public class SpringLogoutConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
         // @formatter:off
         http
                 .formLogin()
                 .and()
                 .logout()
+                    //.logoutUrl()
                     .deleteCookies("JSESSIONID")
                     .invalidateHttpSession(true)
                     //.addLogoutHandler() // 真正做登出操作,比如删除会话,cookie等操作
