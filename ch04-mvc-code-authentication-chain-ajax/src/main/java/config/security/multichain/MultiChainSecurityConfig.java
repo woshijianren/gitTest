@@ -39,16 +39,16 @@ public class MultiChainSecurityConfig extends WebSecurityConfigurerAdapter {
 
         @Override
         protected void configure(HttpSecurity http) throws Exception {
-
+            //下面这样配置,记得调整longin的地址,因为默认是/login,但这样会没有过滤链可以处理地址,会出现404错误
             // @formatter:off
             //这条安全链去掉了csrf
             http.csrf().disable()
                     .antMatcher("/foo/**")
-                    .formLogin()
+                    .formLogin().loginPage("/foo/login")
                     .and()
                     .authorizeRequests()
                     .antMatchers("/").permitAll()
-                    .antMatchers("/admin").authenticated();
+                    .antMatchers("/foo/admin").authenticated();
             // @formatter:on
         }
 
@@ -76,11 +76,11 @@ public class MultiChainSecurityConfig extends WebSecurityConfigurerAdapter {
             //这条链没有去掉csrf
             // @formatter:off
             http.antMatcher("/bar/**")
-                    .formLogin()
+                    .formLogin().loginPage("/bar/login")
                     .and()
                     .authorizeRequests()
                     .antMatchers("/").permitAll()
-                    .antMatchers("/admin").authenticated();
+                    .antMatchers("/bar/admin").authenticated();
             // @formatter:on
         }
 
