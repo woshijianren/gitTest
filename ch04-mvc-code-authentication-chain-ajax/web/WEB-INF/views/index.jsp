@@ -7,6 +7,8 @@
 <html>
 <head>
     <title>index</title>
+
+    <script src="/static/js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 <h1>index</h1>

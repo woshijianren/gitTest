@@ -1,8 +1,9 @@
 package config;
 
-import config.security.SecurityAuthenticationFlowConfig;
+import config.security.multichain.MultiChainSecurityConfig;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+
 
 /**
  * @author cj
@@ -11,8 +12,9 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 //@ComponentScan({"com.service"})
-@Import(SecurityAuthenticationFlowConfig.class)
-public class AppConfig {
 
+//@Import({AChainSecurityConfig.class, BChainSecurityConfig.class})
+@Import({MultiChainSecurityConfig.class})
+public class AppConfig {
 
 }

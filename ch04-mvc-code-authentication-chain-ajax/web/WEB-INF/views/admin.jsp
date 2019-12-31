@@ -7,8 +7,16 @@
 <html>
 <head>
     <title>admin</title>
+    <script src="/static/js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 <h1>admin</h1>
+
+
+<script>
+    $(function () {
+
+    })
+</script>
 </body>
 </html>

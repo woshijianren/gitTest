@@ -30,13 +30,24 @@
 
 只需要配置logout即可,默认的行为是会删除会话数据
 可以配置的项,见案例
+
+> 如果启用了csrf,默认的logout地址只支持post提交形式,不支持get,
+> 没有启用csrf的话就支持所有的请求方法
+> 关于这点的详细说明在LogoutConfigurer的logoutUrl方法的注释上有,
+>解决办法也在此方法有说明
+>```java
+>
+>  logoutRequestMatcher(new AntPathRequestMatcher(logoutUrl, "GET"));
+>```
+>
+
 # UserDetailService(自定义提取用户数据)
 实现这个接口,然后利用auth.userDetailService(传进来)即可使用
 
 编写自定义的UserDetailService时,如果需要抛异常就抛AuthenticationException子类
 比如UsernameNotFoundException
 # csrf
-
+csrf:跨站请求伪造
 
 # 作业1:
 普通的一个mvc项目,完成自定义登录与登出
