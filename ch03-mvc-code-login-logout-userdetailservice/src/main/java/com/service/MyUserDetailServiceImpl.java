@@ -21,6 +21,7 @@ import java.util.List;
  */
 
 @Service
+
 public class MyUserDetailServiceImpl implements UserDetailsService {
     @Autowired(required = false)
     private PasswordEncoder passwordEncoder;

@@ -27,9 +27,15 @@ public class SingleChainSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorities("xxx");
     }
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable()
+                .antMatcher("/foo/**")
+                .formLogin()
+                .and()
+                .authorizeRequests()
+                .antMatchers("/").permitAll()
+                .antMatchers("/admin").authenticated();
         // @formatter:off
        // http.csrf().disable().logout().disable().exceptionHandling().disable();
        // http.addFilter()

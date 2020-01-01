@@ -1,5 +1,8 @@
 package com.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -13,6 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
 
+    @Autowired
+    private ApplicationContext applicationContext;
+    @Autowired(required = false)
+    private AuthenticationManager authenticationManager;
     @RequestMapping("/")
     public String index(){
         return "index";

@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
  * @author cj
@@ -18,7 +19,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class SpringLogoutConfig extends WebSecurityConfigurerAdapter {
-
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -42,6 +42,7 @@ public class SpringLogoutConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                     //.logoutUrl()
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))
                     .deleteCookies("JSESSIONID")
                     .invalidateHttpSession(true)
                     //.addLogoutHandler() // 真正做登出操作,比如删除会话,cookie等操作

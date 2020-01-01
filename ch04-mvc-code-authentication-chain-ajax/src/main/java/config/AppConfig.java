@@ -1,6 +1,6 @@
 package config;
 
-import config.security.multichain.MultiChainSecurityConfig;
+import config.security.singlechain.SingleChainSecurityConfig;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
@@ -14,7 +14,8 @@ import org.springframework.context.annotation.Import;
 //@ComponentScan({"com.service"})
 
 //@Import({AChainSecurityConfig.class, BChainSecurityConfig.class})
-@Import({MultiChainSecurityConfig.class})
+//@Import({MultiChainSecurityConfig.class})
+@Import({SingleChainSecurityConfig.class})
 public class AppConfig {
 
 }
