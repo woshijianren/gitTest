@@ -1,4 +1,10 @@
 # DelegatingFilterProxy
+
+## 配置
+这个过滤器可以通过直接在web.xml中进行配置或者创建一个类继承
+AbstractSecurityWebApplicationInitializer
+
+## 作用
 作用是从spring容器中找出一个其它的过滤器来干活
 查找的方式是getBean("名字"),这个名字就是你配置
 委托过滤器时指定的filterName
@@ -6,6 +12,7 @@
 委托过滤器本质作用是把自己的工作交给一个被spring管理的过滤器来做
 这样可以本来由tomcat容器管理filter的执行,变成spring容器管理
 过滤器的初始化.
+
 
 # FilterChainProxy
 此过滤器由spring容器管理,是DelegatingFilterProxy委托到的一个过滤器
@@ -191,6 +198,64 @@ mvc:
 所在的spring容器和spring mvc所在的spring容器是同一个容器或者
 spring security的spring容器是mvc的spring容器的子容器
 
+
+# rest
+rest服务端配置的重点就是需要返回json,目前案例只是设置了以下三个方面
+- 登录成功处理者
+- 登录失败处理者
+- 验证入口点
+
+客户端的要点有如下几个:
+- 记得带上凭证,否则不能把sessionid这个cookie传回服务端,这样就会要求反复验证
+- 主要依据服务端返回的code值来执行不同的业务逻辑
+客户端的代码如下:
+```js
+$("#btnLogin").click(function(){
+    $.ajax({
+        url:"http://localhost:8080/login",
+        type:"POST",
+        data:{username:"user",password:"123"},
+        xhrFields:{
+            withCredentials:true
+        },
+        success:function(result){
+            if(result.code=="200"){
+                alert('ok');
+                //href="/xxx";
+            }else if(result.code=="500"){
+                alert('账号密码不对');
+            }
+            
+            console.log(result);
+        }
+        
+    });
+    
+}); // btnLogin
+
+
+$("#btnQuery").click(function(){
+    $.ajax({
+        url:"http://localhost:8080/api/query",
+        type:"GET",
+        xhrFields:{
+            withCredentials:true
+        },
+        success:function(result){
+            if(result.code == "403"){
+                //href = "login.html";
+                alert(result.msg);
+                
+            }else if(result.code == "200"){
+                alert(result.data);
+            }
+            console.log(result);
+        }
+        
+    });
+    
+});
+```
 # 术语简介
 委托过滤器(DelegatingFilterProxy)
 过滤链代理(FilterChainProxy)

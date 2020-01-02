@@ -13,6 +13,7 @@
         <module>ch02-mvc-code-helloworld</module>
         <module>ch03-mvc-code-login-logout-userdetailservice</module>
         <module>ch04-mvc-code-authentication-chain-ajax</module>
+        <module>ch05-mvc-code-session</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
