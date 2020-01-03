@@ -15,6 +15,7 @@
         <module>ch04-mvc-code-authentication-chain-ajax</module>
         <module>ch05-mvc-code-session</module>
         <module>ch06-mvc-code-stateless-jwt</module>
+        <module>ch07-mvc-code-authorize-rbac</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

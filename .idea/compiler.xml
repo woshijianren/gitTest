@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ch02-mvc-code-helloworld" />
+        <module name="ch07-mvc-code-authorize-rbac" />
         <module name="ch01-web-xml-helloworld" />
         <module name="ch05-mvc-code-session" />
         <module name="ch06-mvc-code-stateless-jwt" />
