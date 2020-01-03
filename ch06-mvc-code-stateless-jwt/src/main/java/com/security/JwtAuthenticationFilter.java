@@ -42,7 +42,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
                 try {
                     JwtUtil jwtUtil = new JwtUtil();
-                    //如果解析报错,比如过期了,直接相当于放行,
+                    //如果解析报错(比如令牌过期了),会被捕获,然后就不会生成令牌,相当于什么都没干,直接放行.
                     Claims claims = jwtUtil.parseJWT(jwtToken);
                     String username = claims.getSubject();
 
@@ -51,12 +51,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                     // 相应的此类也不是必须要利用UserDetailService来加载东西,
                     // 完全可以只需要一个依据用户名信息加载authories信息的对象即可
 
+                    // 1. 获取用户的授权信息
                     String[] authories = userService.loadRolesByUsername(username);
 
+                    // 2. 生成一个已验证的令牌信息,包含授权信息
                     Authentication authentication =
                             new UsernamePasswordAuthenticationToken(null,
                                     null, AuthorityUtils.createAuthorityList(authories));
-
+                    // 3. 存放到SecurityContextHolder中,在FilterSecurityInterceptor中会利用此令牌与配置的授权信息进行校验,
+                    // 决定是否可以访问资源.
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -64,8 +67,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             }
         }
 
-
         filterChain.doFilter(request, response);
-
     }
 }
