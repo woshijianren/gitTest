@@ -1,4 +1,4 @@
-package com.controller;
+package com.controller.be;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +13,7 @@ import java.util.Date;
  * @date 2019/12/30
  */
 @Controller
+@RequestMapping("/fe")
 public class SessionController {
     @RequestMapping("/sw")
     public void sessionWrite(HttpServletResponse response,HttpSession session) throws IOException {

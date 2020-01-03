@@ -11,5 +11,7 @@
     <file url="file://$PROJECT_DIR$/ch04-mvc-code-authentication-chain-ajax/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ch05-mvc-code-session/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ch05-mvc-code-session/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ch06-mvc-code-stateless-jwt/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ch06-mvc-code-stateless-jwt/src/main/resources" charset="UTF-8" />
   </component>
 </project>
