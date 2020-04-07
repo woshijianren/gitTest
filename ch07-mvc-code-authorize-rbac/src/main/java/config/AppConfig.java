@@ -1,6 +1,7 @@
 package config;
 
-import config.security.StaticRoleSecurityConfig;
+import config.security.DynamicRoleSecurityConfig;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
@@ -10,8 +11,9 @@ import org.springframework.context.annotation.Import;
  */
 
 @Configuration
-//@ComponentScan({"com.service"})
-@Import(StaticRoleSecurityConfig.class)
+@ComponentScan({"com.service"})
+//@Import(StaticRoleSecurityConfig.class)
+@Import(DynamicRoleSecurityConfig.class)
 public class AppConfig {
 
 

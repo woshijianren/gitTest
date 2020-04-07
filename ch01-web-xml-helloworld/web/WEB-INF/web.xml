@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
-<!--
+    <!--
 
-    Spring Security 必须有spring容器,所以在普通的web项目
-    需要想办法创建一个spring 容器.
--->
+        Spring Security 必须有spring容器,所以在普通的web项目
+        需要想办法创建一个spring 容器.
+    -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>

@@ -40,8 +40,8 @@ userService:真正去进行信息的读取
 
         <security:authentication-provider>
 
-            <security:user-service  >
-                <security:user  name="user" password="$2a$10$fo/Gp8wikyAo1LQm2QOfvucfgTBuoOXps./0Hxo0/KVavxM59uPVO" authorities="ROLE_USER"/>
+            <security:user-service >
+                <security:user name="user" password="$2a$10$fo/Gp8wikyAo1LQm2QOfvucfgTBuoOXps./0Hxo0/KVavxM59uPVO" authorities="ROLE_USER"/>
                 <security:user  name="admin" password="{noop}123" authorities="ROLE_ADMIN"/>
             </security:user-service>
             <security:password-encoder ref="passwordEncoder"/>

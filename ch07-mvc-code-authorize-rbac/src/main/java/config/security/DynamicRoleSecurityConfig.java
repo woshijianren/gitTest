@@ -16,7 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  */
 @Configuration
 @EnableWebSecurity
-public class StaticRoleSecurityConfig extends WebSecurityConfigurerAdapter {
+public class DynamicRoleSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     @Override
@@ -54,10 +54,8 @@ public class StaticRoleSecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/user").hasAuthority("xxx")
-                .antMatchers("/user2").hasRole("USER")
-                .antMatchers("/admin").hasAuthority("yyy")
-                .antMatchers("/admin2").hasAnyRole("ADMIN","SUPER_ADMIN");
+                .antMatchers("/**").access("@rbac.xxx(request,authentication)");
+
 
         // @formatter:on
     }
